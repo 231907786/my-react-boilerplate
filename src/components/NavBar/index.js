@@ -1,5 +1,5 @@
 import React from 'react'
-import './index.styl'
+import styles from './index.styl'
 
 export default class NavBar extends React.Component {
 
@@ -16,14 +16,14 @@ export default class NavBar extends React.Component {
     } = this.props
 
     return (
-      <div className="root">
+      <div className={styles.root}>
         {hasBack ? (
-          <div className="left" onClick={goBack}>Back</div>
+          <div className={styles.left} onClick={goBack}>Back</div>
         ) : (
-          <div className="left"></div>
+          <div className={styles.left}></div>
         )}
-        <div className="middle">{children || title || 'Title'}</div>
-        <div className="right"></div>
+        <div className={styles.middle}>{children || title || 'Title'}</div>
+        <div className={styles.right}></div>
       </div>
     )
   }

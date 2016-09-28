@@ -15,7 +15,7 @@ module.exports = {
   // We don't use source maps here because they can be confusing:
   // https://github.com/facebookincubator/create-react-app/issues/343#issuecomment-237241875
   // You may want 'cheap-module-source-map' instead if you prefer source maps.
-  devtool: 'cheap-module-source-map', // 之前是 eval
+  devtool: 'eval',
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
@@ -105,17 +105,23 @@ module.exports = {
       // in development "style" loader enables hot editing of CSS.
       {
         test: /\.css$/,
-        loader: 'style!css!postcss'
+        loader: 'style!css?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss',
+        exclude: paths.appVendorCss,
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css!postcss',
+        include: paths.appVendorCss,
       },
       // stylus
       {
         test: /\.styl$/,
-        loader: 'style!css!postcss!stylus'
+        loader: 'style!css?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!stylus'
       },
       // less
       {
         test: /\.less$/,
-        loader: 'style!css!postcss!less'
+        loader: 'style!css?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss!less'
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
