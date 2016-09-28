@@ -10,13 +10,19 @@ export default (state = mainReducerDefaultState, action) => {
       }
       break;
     case 'FETCHING':
-      if (action.payload) {
+      if (action.error) {
         return {
-          github: JSON.stringify(action.payload)
+          github: action.payload
         }
       }else {
-        return {
-          github: 'Loading...'
+        if (action.payload) {
+          return {
+            github: action.payload
+          }
+        }else {
+          return {
+            github: '加载中...'
+          }
         }
       }
       break;

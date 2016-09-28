@@ -23,6 +23,7 @@ const store = createStore(reducer, applyMiddleware(
   createLogger(),
 ))
 
+
 const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render(
